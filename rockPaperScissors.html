@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/main.css">
+</head>
+<body>
+    
+
+<div class="container">
+    <div class="header">
+        <h2>Choose</h2>
+    </div>
+    <div class="select">
+        <div class="option"><img id="rockButon" src="https://thenounproject.com/api/private/icons/477914/edit/?backgroundShape=SQUARE&backgroundShapeColor=%23000000&backgroundShapeOpacity=0&exportSize=752&flipX=false&flipY=false&foregroundColor=%23000000&foregroundOpacity=1&imageFormat=png&rotation=0" alt="rock"></div>
+        <div class="option"><img id="paperButon" src="https://thenounproject.com/api/private/icons/477912/edit/?backgroundShape=SQUARE&backgroundShapeColor=%23000000&backgroundShapeOpacity=0&exportSize=752&flipX=false&flipY=false&foregroundColor=%23000000&foregroundOpacity=1&imageFormat=png&rotation=0" alt="paper"></div>
+        <div class="option"><img id="scissorButton" src="https://thenounproject.com/api/private/icons/477919/edit/?backgroundShape=SQUARE&backgroundShapeColor=%23000000&backgroundShapeOpacity=0&exportSize=752&flipX=false&flipY=false&foregroundColor=%23000000&foregroundOpacity=1&imageFormat=png&rotation=0" alt="Scissors"></div>
+        
+    </div>
+</div>
+<div class="animation">
+    <img src="" alt="" id="imgYou">
+</div>
+
+
+
+<!-- <button id="rockButon">Rock</button> -->
+<!-- <button id="paperButon">Paper</button> -->
+<!-- <button id="scissorButton">Scissors</button> -->
+
+
+<div id="choosen"></div>
+<div id="scoreDisplay"></div>
+
+    <script>
+        const rockButon = document.getElementById('rockButon')
+        const paperButon = document.getElementById('paperButon')
+        const scissorButton = document.getElementById('scissorButton')
+        const choosen = document.getElementById('choosen')
+        const scoreDisplay = document.getElementById('scoreDisplay') ;
+        const imgYou = document.getElementById('imgYou') ;
+        let chosed;
+        let status;
+        let yScore = 0
+        let bScore = 0
+        const arr = ['paper','scissor','rock']
+        rockButon.addEventListener('click',()=>{
+            reset()
+            chosed = 2
+            let botsChoise = getRandomNum()
+            
+            
+            compare(chosed,botsChoise)
+            choosen.innerHTML = `</br>You Choosed ${arr[chosed]} </br> Bot Choosed ${arr[botsChoise]} </br>${status}`
+            scoreDisplay.innerHTML = `</br>Score: </br> You: ${yScore} Bot: ${bScore}`
+            imgYou.src = rockButon.src
+            imgYou.classList.add('animatee');
+            
+        })
+        paperButon.addEventListener('click',()=>{
+            chosed = 0
+            choosen.textContent = chosed
+            let botsChoise = getRandomNum()
+            
+            compare(chosed,botsChoise)
+            choosen.innerHTML = `</br>You Choosed ${arr[chosed]} </br> Bot Choosed ${arr[botsChoise]} </br>${status}`
+            scoreDisplay.innerHTML = `</br>Score: </br> You: ${yScore} Bot: ${bScore}`
+            imgYou.src = paperButon.src
+
+        })
+        scissorButton.addEventListener('click',()=>{
+            chosed = 1
+            choosen.textContent = chosed
+            let botsChoise = getRandomNum()
+            
+            compare(chosed,botsChoise)
+            choosen.innerHTML = `</br>You Choosed ${arr[chosed]} </br> Bot Choosed ${arr[botsChoise]} </br>${status}`
+            scoreDisplay.innerHTML = `</br>Score: </br> You: ${yScore} Bot: ${bScore}`
+            imgYou.src = scissorButton.src
+
+        })
+
+        function getRandomNum(){
+            let randomNum = Math.floor(Math.random() * 3)
+            return randomNum
+        }
+        function compare(you,bot) {
+            if (you !== bot) {
+                if (bot  === (you +1)%3) {
+                    status = 'Bot win'
+                    bScore ++
+                }
+                else{
+                    status = 'You win'
+                    yScore++
+                }
+            }
+            else{
+                status = 'tie'
+            }
+        }
+        function reset(){
+            imgYou.classList.remove('animatee');
+        }
+    </script>
+</body>
+</html>

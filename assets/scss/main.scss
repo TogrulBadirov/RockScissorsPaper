@@ -1,0 +1,74 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.line{
+    text-decoration: line-through;
+}
+.select{
+    display: flex;
+
+}
+.option{
+    width: 100px;
+    height: 100px;
+    img{
+        width: 100px;
+        height: 100px;  
+        transition: 0.3s;
+        margin-top: 50%;
+        margin-left: 50%;
+        transform: translate(-50%,-50%);
+    }
+    cursor: pointer;
+}
+.option:active{
+    img{
+        width: 80px;
+        height: 80px;  
+    }
+}
+.animation{
+    width: 300px;
+    height: 300px;
+    border: 1px solid black;
+    img{
+        width: 100px;
+        height: 100px;
+        transform: rotate(90deg);
+        
+        animation-duration: 1s;
+        animation-timing-function: ease-in-out;
+    }
+}
+
+.animatee{
+    animation-name: shake;
+}
+
+@keyframes shake{
+    0%{
+        transform: rotate(90deg);
+
+    }
+    20%{
+        transform: rotate(120deg);
+    }
+    40%{
+        transform: rotate(60deg);
+
+    }
+    60%{
+        transform: rotate(120deg);
+
+    }
+    80%{
+        transform: rotate(60deg);
+
+    }
+    100%{
+        transform: rotate(90deg);
+
+    }
+}
